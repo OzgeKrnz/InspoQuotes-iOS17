@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		AD18A84821285CB000F6BF05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD18A84621285CB000F6BF05 /* LaunchScreen.storyboard */; };
 		AD18A85021285D4800F6BF05 /* QuoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD18A84F21285D4800F6BF05 /* QuoteTableViewController.swift */; };
 		AD18A8532128604C00F6BF05 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = AD18A8512128604B00F6BF05 /* README.md */; };
+		B060A0982D4E601B007992B7 /* NavigationBarGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060A0972D4E601B007992B7 /* NavigationBarGradient.swift */; };
+		B0F62CCB2D52BFCD00C7580A /* IAPConfig.storekit in Resources */ = {isa = PBXBuildFile; fileRef = B0F62CCA2D52BFCD00C7580A /* IAPConfig.storekit */; };
+		B0F62CCD2D52C05500C7580A /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F62CCC2D52C05500C7580A /* IAPManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		AD18A84921285CB000F6BF05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD18A84F21285D4800F6BF05 /* QuoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTableViewController.swift; sourceTree = "<group>"; };
 		AD18A8512128604B00F6BF05 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B060A0972D4E601B007992B7 /* NavigationBarGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarGradient.swift; sourceTree = "<group>"; };
+		B0F62CCA2D52BFCD00C7580A /* IAPConfig.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = IAPConfig.storekit; sourceTree = "<group>"; };
+		B0F62CCC2D52C05500C7580A /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,17 +68,12 @@
 				AD18A84121285CAF00F6BF05 /* Main.storyboard */,
 				AD18A84421285CB000F6BF05 /* Assets.xcassets */,
 				AD18A84621285CB000F6BF05 /* LaunchScreen.storyboard */,
-				AD18A8552128605C00F6BF05 /* Supporting Files */,
 				AD18A84921285CB000F6BF05 /* Info.plist */,
+				B060A0972D4E601B007992B7 /* NavigationBarGradient.swift */,
+				B0F62CCA2D52BFCD00C7580A /* IAPConfig.storekit */,
+				B0F62CCC2D52C05500C7580A /* IAPManager.swift */,
 			);
 			path = InspoQuotes;
-			sourceTree = "<group>";
-		};
-		AD18A8552128605C00F6BF05 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -101,8 +102,9 @@
 		AD18A83221285CAF00F6BF05 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1000;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = "London App Brewery";
 				TargetAttributes = {
 					AD18A83921285CAF00F6BF05 = {
@@ -120,6 +122,9 @@
 				Base,
 			);
 			mainGroup = AD18A83121285CAF00F6BF05;
+			packageReferences = (
+				B0A251502D529B5500F86868 /* XCRemoteSwiftPackageReference "CopilotForXcode" */,
+			);
 			productRefGroup = AD18A83B21285CAF00F6BF05 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,6 +142,7 @@
 				AD18A84821285CB000F6BF05 /* LaunchScreen.storyboard in Resources */,
 				AD18A84521285CB000F6BF05 /* Assets.xcassets in Resources */,
 				AD18A8532128604C00F6BF05 /* README.md in Resources */,
+				B0F62CCB2D52BFCD00C7580A /* IAPConfig.storekit in Resources */,
 				AD18A84321285CAF00F6BF05 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,7 +154,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F62CCD2D52C05500C7580A /* IAPManager.swift in Sources */,
 				AD18A85021285D4800F6BF05 /* QuoteTableViewController.swift in Sources */,
+				B060A0982D4E601B007992B7 /* NavigationBarGradient.swift in Sources */,
 				AD18A83E21285CAF00F6BF05 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +209,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -212,6 +221,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -262,6 +272,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -273,6 +284,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -296,13 +308,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ECFYJZ64T;
+				DEVELOPMENT_TEAM = 57X9MWG2TR;
 				INFOPLIST_FILE = InspoQuotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.londonappbrewery.InspoQuotes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ozgekurnaz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -314,13 +326,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3ECFYJZ64T;
+				DEVELOPMENT_TEAM = 57X9MWG2TR;
 				INFOPLIST_FILE = InspoQuotes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.londonappbrewery.InspoQuotes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ozgekurnaz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -349,6 +361,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B0A251502D529B5500F86868 /* XCRemoteSwiftPackageReference "CopilotForXcode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/github/CopilotForXcode.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.29.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = AD18A83221285CAF00F6BF05 /* Project object */;
 }
