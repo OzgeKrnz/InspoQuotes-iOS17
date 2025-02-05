@@ -55,13 +55,45 @@ class IAPManager: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObser
             
             if transaction.transactionState == .purchased {
                 // successfull purchase
-                print("Transaction successful!")
+                print("Satın alma ok")
+                UserDefaults.standard.set(true, forKey: "isPremiumUser")
+               
+                print("IAP bildirim bsarılı")
+                NotificationCenter.default.post(name: NSNotification.Name("IAPSuccess"), object: nil)
+                SKPaymentQueue.default().finishTransaction(transaction)
+                    
             }else if transaction.transactionState == .failed {
                 //Payment failed
-                print("Transaction failed!")
+                print("satın alma basarısız")
+                SKPaymentQueue.default().finishTransaction(transaction)
                 
+            }else if transaction.transactionState == .restored {
+                // restore purchase
+                print("restore basarılı")
+                UserDefaults.standard.set(true, forKey: "isPremiumUser")
+                print("Restore sonrası IAP bildirim basarılı")
+                NotificationCenter.default.post(name: NSNotification.Name("IAPSuccess"), object: nil)
+
+                print("Transaction restored!")
+                SKPaymentQueue.default().finishTransaction(transaction)
             }
         }
+    }
+    
+    func isPurchased()->Bool{
+        let purchaseStatus = UserDefaults.standard.bool(forKey: "isPremiumUser")
+        
+        if purchaseStatus{
+            print("User is premium already")
+            return true
+        }else{
+            print("User is not premium")
+            return false
+        }
+    }
+    func restorePurchases(){
+        print("Storekit: restore cagrıldı.")
+        SKPaymentQueue.default().restoreCompletedTransactions()
     }
     
 }

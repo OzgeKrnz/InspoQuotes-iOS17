@@ -40,20 +40,52 @@ class QuoteTableViewController: UITableViewController{
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Restore", style: .plain, target: self, action: #selector(restoreQuotes))
         
-        
-        SKPaymentQueue.default().add(IAPManager.shared)
+        //Storekitten ürünleri çekme
         IAPManager.shared.fetchProducts()
         
+        //satın alma ve restore işlemlerini dinleme
+        SKPaymentQueue.default().add(IAPManager.shared)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(unlockPremiumQuotes), name: NSNotification.Name("IAPSuccess"), object: nil)
+     
+        
+        // premium acma
+        // StoreKit ürünleri çekildikten sonra satın alma durumunu kontrol et
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if IAPManager.shared.isPurchased() {
+                print("🔓 Kullanıcı premium, premium içerikler açılıyor!")
+                self.unlockPremiumQuotes()
+            } else {
+                print("❌ Kullanıcı premium değil.")
+            }
+        }
     }
+    
+    
+    
     
     @objc func restoreQuotes() {
-        let ac = UIAlertController(title: "Restore Quotes", message: "Enter your code", preferredStyle: .alert)
-        // ac.addTextField()
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        print("restore butonu calıstı")
+        IAPManager.shared.restorePurchases()
+        
+        if IAPManager.shared.isPurchased(){
+            NotificationCenter.default.addObserver(self, selector: #selector(unlockPremiumQuotes), name: NSNotification.Name("IAPSuccess"), object: nil)
+            
+        }
+        
     }
     
+    @objc func unlockPremiumQuotes() {
+        guard !quotesToShow.contains(premiumQuotes.first!) else { return }
+        print("premium acılıyor")
+        quotesToShow.append(contentsOf: premiumQuotes)
+        tableView.reloadData()
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if IAPManager.shared.isPurchased() {
+            return quotesToShow.count
+            
+        }
         return quotesToShow.count + 1
     }
     
@@ -63,11 +95,14 @@ class QuoteTableViewController: UITableViewController{
         if indexPath.row < quotesToShow.count {
             cell.textLabel?.text = quotesToShow[indexPath.row]
             cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.textColor = UIColor.white
         } else {
             cell.textLabel?.text = "Get More Quotes"
             cell.textLabel?.textColor = UIColor.link
             cell.accessoryType = .disclosureIndicator
         }
+        
+       
         
         return cell
     }
